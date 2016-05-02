@@ -7,10 +7,7 @@ if(empty($_SESSION['no_pegawai']) AND empty($_SESSION['password'])){
   session_destroy();
   echo "<script>document.location.href='index.php';</script>";
 }else{*/
-  include_once "__class/db.php";
-  include_once "__class/event-date.php";
-
-  $dbase = new db();
+  include_once "config.php";
 
 ?>
 <!DOCTYPE html>
@@ -24,24 +21,7 @@ if(empty($_SESSION['no_pegawai']) AND empty($_SESSION['password'])){
 
   <title>Cuti Online!</title>
 
-  <!-- Bootstrap core CSS -->
-
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-
-  <link href="fonts/css/font-awesome.min.css" rel="stylesheet">
-  <link href="css/animate.min.css" rel="stylesheet">
-
-  <!-- Custom styling plus plugins -->
-  <link href="css/custom.css" rel="stylesheet">
-  <link href="css/icheck/flat/green.css" rel="stylesheet">
-
-  <link href="js/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css" />
-  <link href="js/datatables/buttons.bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link href="js/datatables/fixedHeader.bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link href="js/datatables/responsive.bootstrap.min.css" rel="stylesheet" type="text/css" />
-  <link href="js/datatables/scroller.bootstrap.min.css" rel="stylesheet" type="text/css" />
-
-  <script src="js/jquery.min.js"></script>
+  <?php include_once "TopResource.php"; ?>
 </head>
 
 
@@ -208,95 +188,26 @@ if(empty($_SESSION['no_pegawai']) AND empty($_SESSION['password'])){
           <div id="notif-group" class="tabbed_notifications"></div>
         </div>
 
-        <script src="js/bootstrap.min.js"></script>
+        <!-- Modal -->
+        <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        	<div class="modal-dialog" role="document">
+        		<div class="modal-content">
+        			<div class="modal-header">
+        				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        				<h3 class="modal-title" id="myModalLabel" style="text-align:center;">Hapus Jabatan</h3>
+        			</div>
+        			<div class="modal-body">
+        				<h4 style="text-align:center;">Apakah anda yakin menghapus?</h4>
+        			</div>
+        			<div class="modal-footer">
+        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        				<button type="button" class="btn btn-danger" style="margin-bottom:5px;">Delete</button>
+        			</div>
+        		</div>
+        	</div>
+        </div>
 
-        
-
-        <!-- bootstrap progress js -->
-        <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
-        <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
-        <!-- icheck -->
-        <script src="js/icheck/icheck.min.js"></script>
-
-        <script src="js/custom.js"></script>
-
-
-        <!-- Datatables -->
-        <!-- <script src="js/datatables/js/jquery.dataTables.js"></script>
-  <script src="js/datatables/tools/js/dataTables.tableTools.js"></script> -->
-
-        <!-- Datatables-->
-        <script src="js/datatables/jquery.dataTables.min.js"></script>
-        <script src="js/datatables/dataTables.bootstrap.js"></script>
-        <script src="js/datatables/dataTables.buttons.min.js"></script>
-        <script src="js/datatables/buttons.bootstrap.min.js"></script>
-        <script src="js/datatables/jszip.min.js"></script>
-        <script src="js/datatables/pdfmake.min.js"></script>
-        <script src="js/datatables/vfs_fonts.js"></script>
-        <script src="js/datatables/buttons.html5.min.js"></script>
-        <script src="js/datatables/buttons.print.min.js"></script>
-        <script src="js/datatables/dataTables.fixedHeader.min.js"></script>
-        <script src="js/datatables/dataTables.keyTable.min.js"></script>
-        <script src="js/datatables/dataTables.responsive.min.js"></script>
-        <script src="js/datatables/responsive.bootstrap.min.js"></script>
-        <script src="js/datatables/dataTables.scroller.min.js"></script>
-
-
-        <!-- pace -->
-        <script src="js/pace/pace.min.js"></script>
-        <script>
-          var handleDataTableButtons = function() {
-              "use strict";
-              0 !== $("#datatable-buttons").length && $("#datatable-buttons").DataTable({
-                dom: "Bfrtip",
-                buttons: [{
-                  extend: "copy",
-                  className: "btn-sm"
-                }, {
-                  extend: "csv",
-                  className: "btn-sm"
-                }, {
-                  extend: "excel",
-                  className: "btn-sm"
-                }, {
-                  extend: "pdf",
-                  className: "btn-sm"
-                }, {
-                  extend: "print",
-                  className: "btn-sm"
-                }],
-                responsive: !0
-              })
-            },
-            TableManageButtons = function() {
-              "use strict";
-              return {
-                init: function() {
-                  handleDataTableButtons()
-                }
-              }
-            }();
-        </script>
-        <script type="text/javascript">
-          $(document).ready(function() {
-            $('#datatable').dataTable();
-            $('#datatable-keytable').DataTable({
-              keys: true
-            });
-            $('#datatable-responsive').DataTable();
-            $('#datatable-scroller').DataTable({
-              ajax: "js/datatables/json/scroller-demo.json",
-              deferRender: true,
-              scrollY: 380,
-              scrollCollapse: true,
-              scroller: true
-            });
-            var table = $('#datatable-fixed-header').DataTable({
-              fixedHeader: true
-            });
-          });
-          TableManageButtons.init();
-        </script>
+        <?php include_once "BottomResource.php"; ?>
 
 
 </body>

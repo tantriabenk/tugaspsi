@@ -1,7 +1,7 @@
 <?php
 error_reporting(0);
 session_start();
-if(isset($_SESSION['no_pegawai'])){
+if(isset($_SESSION['nip'])){
 	echo "<script>document.location.href='main.php?mod=dashboard';</script>";
 }else{
 	include_once "__class/db.php";
@@ -14,9 +14,7 @@ if(isset($_SESSION['no_pegawai'])){
 		if($login){
 			echo "<script>document.location.href='main.php?mod=dashboard';</script>";
 		}else{
-			echo "<script type='text/javascript'>alert('Login Gagal')</script>";
-
-			echo "<script>document.location.href='index.php';</script>";
+			echo "<script>document.location.href='index.php?failed';</script>";
 		}
 	}
 ?>
@@ -51,8 +49,15 @@ if(isset($_SESSION['no_pegawai'])){
 
     <div id="wrapper">
       <div id="login" class="animate form">
+				<?php if(isset($_GET['failed'])){ ?>
+				<div class="alert alert-danger alert-dismissible fade in" role="alert">
+					<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">×</span>
+					</button>
+					<strong>Login Gagal!</strong> NIP atau Password tidak terdaftar!.
+				</div>
+				<?php } ?>
         <section class="login_content">
-          <form action="">
+          <form action="#" method="POST">
             <h1>Login Form</h1>
             <div>
               <input type="text" name="FUSER" class="form-control" placeholder="Username" required="" />

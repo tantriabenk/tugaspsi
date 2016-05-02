@@ -23,18 +23,18 @@ class db extends PDO{
 	/* Function Login */
 	public function check_login($no_pegawai, $password){
 		$pass = md5($password);
-		$qLogin = $this->prepare("SELECT * FROM tbl_pegawai WHERE no_pegawai ='$no_pegawai' and password='$pass'");
+		$qLogin = $this->prepare("SELECT * FROM pegawai WHERE NIP ='$no_pegawai' and password='$pass'");
 		$qLogin->execute();
 		foreach($qLogin as $data){}
 		$rows = $qLogin->rowCount();
 		//echo $data['username'];
 		if($rows==1){
 			$_SESSION['login'] = true;
-			$_SESSION['no_pegawai'] = $data['no_pegawai'];
-			$_SESSION['nama_pegawai'] = $data['nama_pegawai'];
-			$_SESSION['id_bagian'] = $data['id_bagian'];
-			$_SESSION['id_pangkat'] = $data['id_pangkat'];
-			$_SESSION['status_admin'] = $data['status_admin'];
+			$_SESSION['nip'] = $data['NIP'];
+			$_SESSION['nama'] = $data['Nama'];
+			$_SESSION['golongan'] = $data['ID_Golongan'];
+			$_SESSION['instansi'] = $data['ID_Instansi'];
+			$_SESSION['jabatan'] = $data['ID_Jabatan'];
 			return true;
 		}else{
 			return false;

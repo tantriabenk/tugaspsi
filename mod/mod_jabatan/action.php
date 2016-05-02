@@ -1,12 +1,9 @@
 <?php
 error_reporting(0);
-include_once "../../__class/db.php";
+include_once "../../config.php";
 
-$dbase = new db();
 $tabel = "jabatan";
-
-
-$Nama_Jabatan = ucwords($_POST['Nama_Jabatan']);
+$Nama_Jabatan = ucwords($_POST['nama_jabatan']);
 
 
 if(isset($_GET['add'])){
@@ -14,14 +11,16 @@ if(isset($_GET['add'])){
 		'Nama_Jabatan' => $Nama_Jabatan
 	);
 	$dbase->add($tabel, $nilai);
-	echo "<script>document.location.href='../../main.php?mod=jabatan';</script>";
 }else if(isset($_GET['update'])){
-	$id = $_POST['id'];
+	$id = $_POST['id_jabatan'];
 	$where = "ID_Jabatan = '$id'";
 	$nilai = array(
 		'Nama_Jabatan' => $Nama_Jabatan
 	);
 	$dbase->update($tabel, $nilai, $where);
-	echo "<script>document.location.href='../../main.php?mod=jabatan';</script>";
+}else if(isset($_GET['delete'])){
+	$id = $_POST['id_jabatan'];
+	$where = "ID_Jabatan = '$id'";
+	$dbase->delete($tabel, $where);
 }
 ?>

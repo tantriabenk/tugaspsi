@@ -2,25 +2,25 @@
 	function event_date($dt){
 			$date = substr($dt,0,2);
 			$month = getMonth(substr($dt,3,2));
-			return $date.' '.$month.'';		 
+			return $date.' '.$month.'';
 	}
 
 	function article_date($dt){
 			$date = substr($dt,8,2);
 			$month = getMonth(substr($dt,5,2));
-			return "<span>$date</span><span>$month</span>";		 
+			return "<span>$date</span><span>$month</span>";
 	}
 
 	function post_date($dt){
 			$date = substr($dt,8,2);
 			$month = getMonth(substr($dt,5,2));
 			$year = substr($dt,0,4);
-			return "$month $date, $year";		 
-	}	
+			return "$month $date, $year";
+	}
 
 	function getMonth($month){
 				switch ($month){
-					case 1: 
+					case 1:
 						return "Jan";
 						break;
 					case 2:
@@ -57,39 +57,39 @@
 						return "Dec";
 						break;
 				}
-			} 
+			}
 
-function tgl_indo($tgl){ 
-	$tanggal = substr($tgl,8,2); $bulan = getBulan(substr($tgl,5,2)); $tahun = substr($tgl,0,4); 
-	return $tanggal.' '.$bulan.' '.$tahun;		 
-}	
+function tgl_indo($tgl){
+	$tanggal = substr($tgl,8,2); $bulan = getBulan(substr($tgl,5,2)); $tahun = substr($tgl,0,4);
+	return $tanggal.' '.$bulan.' '.$tahun;
+}
 
 function getBulan($bln){
 	switch ($bln){
 		case 1:return "Januari";
-		break; 
+		break;
 		case 2:return "Februari";
-		break; 
+		break;
 		case 3:return "Maret";
-		break; 
+		break;
 		case 4:return "April";
-		break; 
+		break;
 		case 5:return "Mei";
-		break; 
+		break;
 		case 6:return "Juni";
-		break; 
+		break;
 		case 7:return "Juli";
-		break; 
+		break;
 		case 8:return "Agustus";
-		break; 
+		break;
 		case 9:return "September";
-		break; 
+		break;
 		case 10:return "Oktober";
-		break; 
+		break;
 		case 11:return "Nopember";
-		break; 
+		break;
 		case 12:return "Desember";
 		break;
 	}
-} 
+}
 ?>

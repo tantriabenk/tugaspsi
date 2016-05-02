@@ -11,6 +11,5 @@ error_reporting(0);
 	$where = "ID_Jabatan = '$id'";
 
 	$dbase->delete($tabel, $where);
-	echo "<script>document.location.href='../../main.php?mod=jabatan';</script>";
 //}
 ?>
