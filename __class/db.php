@@ -282,13 +282,102 @@ class db extends PDO{
 		return $data['tgl_mulai'];
 	}
 
-	public function getVerified($no_pegawai, $id_periode){
-		$tabel = "tbl_verifikasi";
-		$fild = "*";
-		$where = "no_pegawai='$no_pegawai' AND id_periode='$id_periode'";
-		foreach($this->select($tabel, $fild, $where) as $data){}
+	public function getNip($TanggalLahir, $JenisKelamin){
+		//Tanggal Sekarang
+		$thnNow = date("Y");
+		$blnNow = date("m");
+		$tglNow = $thnNow.$blnNow;
 
-		return $data['verifikasi'];
+		//Penentuan Nilai Untuk Jenis Kelamin
+		if($JenisKelamin=="L"){
+			$NJK = 1;
+		}else{
+			$NJK = 2;
+		}
+
+		//Penentuan Nilai Untuk Tanggal Lahir
+		$NTL = str_replace("-","", $TanggalLahir);
+
+		$fild_max = "ifnull(MAX(substr(NIP,16,3)),0) as max";
+		$tabel = "pegawai";
+
+		foreach($this->select($tabel, $fild_max) as $data){}
+		$max = $data['max']+1;
+		if($max < 10){
+			$nip = $NTL.$tglNow.$NJK."00".$max;
+		}else if($no < 100){
+			$nip = $NTL.$tglNow.$NJK."0".$max;
+		}else{
+			$nip = $NTL.$tglNow.$NJK.$max;
+		}
+
+		return $nip;
+	}
+
+	public function getNipOnUpdate($TanggalLahir, $JenisKelamin, $nip){
+		//Tanggal Masuk
+		$NTM = substr($nip,8,6);
+
+		//Penentuan Nilai Untuk Jenis Kelamin
+		if($JenisKelamin=="L"){
+			$NJK = 1;
+		}else{
+			$NJK = 2;
+		}
+
+		//Penentuan Nilai Untuk Tanggal Lahir
+		$NTL = str_replace("-","", $TanggalLahir);
+
+		//No Urut
+		$NNU = substr($nip,15,3);
+		$newnip = $NTL.$NTM.$NJK.$NNU;
+
+		return $newnip;
+	}
+
+	public function checkMasterPegawai($nip){
+		$tabel = "transaksicutipegawai";
+		$fild = "COUNT(*) as jml";
+		$where = "NIP='$nip'";
+		foreach($this->select($tabel, $fild, $where) as $data){}
+		$jml = $data['jml'];
+		return $jml;
+	}
+
+	public function checkMasterJCuti($id){
+		$tabel = "transaksicutipegawai";
+		$fild = "COUNT(*) as jml";
+		$where = "ID_JCuti='$id'";
+		foreach($this->select($tabel, $fild, $where) as $data){}
+		$jml = $data['jml'];
+		return $jml;
+	}
+
+	public function checkMasterJabatan($id){
+		$tabel = "pegawai";
+		$fild = "COUNT(*) as jml";
+		$where = "ID_Jabatan='$id'";
+		foreach($this->select($tabel, $fild, $where) as $data){}
+		$jml = $data['jml'];
+		return $jml;
+	}
+
+	public function checkMasterGolongan($id){
+		$tabel = "pegawai";
+		$fild = "COUNT(*) as jml";
+		$where = "ID_Golongan='$id'";
+		foreach($this->select($tabel, $fild, $where) as $data){}
+		$jml = $data['jml'];
+		return $jml;
+	}
+
+	public function checkMasterInstansi($id){
+		$tabel = "pegawai";
+		$fild = "COUNT(*) as jml";
+		$where = "ID_Instansi='$id'";
+		foreach($this->select($tabel, $fild, $where) as $data){}
+		$jml = $data['jml'];
+		return $jml;
 	}
 
 }

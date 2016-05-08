@@ -1,27 +1,26 @@
 <?php
 error_reporting(0);
-include_once "../../__class/db.php";
+include_once "../../config.php";
 
-$dbase = new db();
 $tabel = "golongan";
-
-
-$Nama_Golongan = ucwords($_POST['Nama_Golongan']);
+$nama_golongan = ucwords($_POST['NamaGolongan']);
 
 
 if(isset($_GET['add'])){
 	$nilai = array(
-		'Nama_Golongan' => $Nama_Golongan
+		'Nama_Golongan' => $nama_golongan
 	);
 	$dbase->add($tabel, $nilai);
-	echo "<script>document.location.href='../../main.php?mod=golongan';</script>";
 }else if(isset($_GET['update'])){
-	$id = $_POST['id'];
-	$where = "ID_Golongan = '$id'";
+	$idg = $_POST['idg'];
+	$where = "ID_Golongan = '$idg'";
 	$nilai = array(
-		'Nama_Golongan' => $Nama_Golongan
+		'Nama_Golongan' => $nama_golongan
 	);
 	$dbase->update($tabel, $nilai, $where);
-	echo "<script>document.location.href='../../main.php?mod=golongan';</script>";
+}else if(isset($_GET['delete'])){
+	$idg = $_POST['idg'];
+	$where = "ID_Golongan = '$idg'";
+	$dbase->delete($tabel, $where);
 }
 ?>

@@ -1,18 +1,12 @@
- <div class="widget widget-nopad">
-	<div class="widget-header"> <i class="icon-list-alt"></i>
-	  <h3>Beranda</h3>
+<div class="x_panel">
+	<div class="x_title">
+		<h2>Dashboard</h2>
+    <div class="clearfix"></div>
 	</div>
-	<!-- /widget-header -->
-	<div class="widget-content">
-	  <div class="widget big-stats-container">
-		<div class="widget-content">
-		  	<h1 style="padding:20px 20px 0 20px;">
-          	Selamat datang di Admin Panel!
-      		</h1>
-      		<p style="margin-left:20px; font-size:14px;">Halaman ini dapat anda gunakan untuk melakukan manajemen data-data master untuk aplikasi kaloritics. <br/> Halaman ini hanya dikhususkan untuk administrator yang dapat mengelola data master baik itu menghapus, mengubah dan menambah data. <br/>Halaman master yang dapat dilakukan manajemen data yaitu halaman master aktivitas, master menu, dan master jenis menu</p>
-		</div>
-		<!-- /widget-content -->
-	  </div>
+	<div class="x_content">
+    <h1 style="padding:0px 20px 0 20px;">
+        Selamat datang di Admin Panel!
+    </h1>
+    <p style="margin-left:20px; font-size:14px;">Selamat datang di halaman admin panel, disini anda bertugas sebagai (jabatan), selamat bekerja!</p>
 	</div>
-  </div>
-  <!-- /widget -->
+</div>

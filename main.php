@@ -1,12 +1,12 @@
 <?php
 session_start();
 error_reporting(0);
-/*
-if(empty($_SESSION['no_pegawai']) AND empty($_SESSION['password'])){
+
+if(empty($_SESSION['nip']) AND empty($_SESSION['password'])){
   session_unset();
   session_destroy();
   echo "<script>document.location.href='index.php';</script>";
-}else{*/
+}else{
   include_once "config.php";
 
 ?>
@@ -36,7 +36,7 @@ if(empty($_SESSION['no_pegawai']) AND empty($_SESSION['password'])){
         <div class="left_col scroll-view">
 
           <div class="navbar nav_title" style="border: 0;">
-            <a href="index.html" class="site_title"><i class="fa fa-paw"></i> <span>Cuti Online!</span></a>
+            <a href="?mod=dashboard" class="site_title"><i class="fa fa-paw"></i> <span>Cuti Online!</span></a>
           </div>
           <div class="clearfix"></div>
 
@@ -116,18 +116,22 @@ if(empty($_SESSION['no_pegawai']) AND empty($_SESSION['password'])){
             <ul class="nav navbar-nav navbar-right">
               <li class="">
                 <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-                  <img src="images/img.jpg" alt="">John Doe
+                  <img src="images/img.jpg" alt=""><?php echo $_SESSION['nama']; ?>
                   <span class=" fa fa-angle-down"></span>
                 </a>
                 <ul class="dropdown-menu dropdown-usermenu animated fadeInDown pull-right">
-                  <li><a href="javascript:;">  Profile</a></li>
+                  <li><a href="javascript:;">  Profile</a>
+                  </li>
                   <li>
                     <a href="javascript:;">
                       <span class="badge bg-red pull-right">50%</span>
                       <span>Settings</span>
                     </a>
                   </li>
-                  <li><a href="login.html"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
+                  <li>
+                    <a href="javascript:;">Help</a>
+                  </li>
+                  <li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a>
                   </li>
                 </ul>
               </li>
@@ -162,6 +166,7 @@ if(empty($_SESSION['no_pegawai']) AND empty($_SESSION['password'])){
   						elseif($_GET['mod']=='golongan'){ include'mod/mod_golongan/default.php'; }
   						elseif($_GET['mod']=='instansi'){ include'mod/mod_instansi/default.php'; }
   						elseif($_GET['mod']=='jenis_cuti'){ include'mod/mod_jenis_cuti/default.php'; }
+  						elseif($_GET['mod']=='pegawai'){ include'mod/mod_pegawai/default.php'; }
   						else { include'mod/mod_dashboard/default.php';}
   						?>
               <!-- END MOD CONTENT -->
@@ -169,7 +174,7 @@ if(empty($_SESSION['no_pegawai']) AND empty($_SESSION['password'])){
               <!-- footer content -->
               <footer>
                 <div class="copyright-info">
-                  <p class="pull-right">Cuti Online Kecamatan Sukolilo</p>
+                  <p class="pull-right">Cuti Online Kecamatan Sukolilo </p>
                 </div>
                 <div class="clearfix"></div>
               </footer>
@@ -188,32 +193,25 @@ if(empty($_SESSION['no_pegawai']) AND empty($_SESSION['password'])){
           <div id="notif-group" class="tabbed_notifications"></div>
         </div>
 
-        <!-- Modal -->
-        <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-        	<div class="modal-dialog" role="document">
-        		<div class="modal-content">
-        			<div class="modal-header">
-        				<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-        				<h3 class="modal-title" id="myModalLabel" style="text-align:center;">Hapus Jabatan</h3>
-        			</div>
-        			<div class="modal-body">
-        				<h4 style="text-align:center;">Apakah anda yakin menghapus?</h4>
-        			</div>
-        			<div class="modal-footer">
-        				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        				<button type="button" class="btn btn-danger" style="margin-bottom:5px;">Delete</button>
-        			</div>
-        		</div>
-        	</div>
-        </div>
+        <script src="js/bootstrap.min.js"></script>
 
+
+
+
+        <!-- bootstrap progress js -->
+        <script src="js/progressbar/bootstrap-progressbar.min.js"></script>
+        <script src="js/nicescroll/jquery.nicescroll.min.js"></script>
+        <!-- icheck -->
+        <script src="js/icheck/icheck.min.js"></script>
+
+        <script src="js/custom.js"></script>
         <?php include_once "BottomResource.php"; ?>
 
 
 </body>
 
 </html>
-<?php/*
+<?php
 }
-*/
+
 ?>

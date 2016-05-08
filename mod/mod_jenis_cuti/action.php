@@ -1,27 +1,26 @@
 <?php
 error_reporting(0);
-include_once "../../__class/db.php";
+include_once "../../config.php";
 
-$dbase = new db();
 $tabel = "jeniscuti";
-
-
-$NamaJenisCuti = ucwords($_POST['NamaJenisCuti']);
+$nama_jenis = ucwords($_POST['NamaJenisCuti']);
 
 
 if(isset($_GET['add'])){
 	$nilai = array(
-		'NamaJenisCuti' => $NamaJenisCuti
+		'NamaJenisCuti' => $nama_jenis
 	);
 	$dbase->add($tabel, $nilai);
-	echo "<script>document.location.href='../../main.php?mod=jenis_cuti';</script>";
 }else if(isset($_GET['update'])){
-	$id = $_POST['id'];
-	$where = "ID_JCuti = '$id'";
+	$idj = $_POST['idj'];
+	$where = "ID_JCuti = '$idj'";
 	$nilai = array(
-		'NamaJenisCuti' => $NamaJenisCuti
+		'NamaJenisCuti' => $nama_jenis
 	);
 	$dbase->update($tabel, $nilai, $where);
-	echo "<script>document.location.href='../../main.php?mod=jenis_cuti';</script>";
+}else if(isset($_GET['delete'])){
+	$idj = $_POST['idj'];
+	$where = "ID_JCuti = '$idj'";
+	$dbase->delete($tabel, $where);
 }
 ?>

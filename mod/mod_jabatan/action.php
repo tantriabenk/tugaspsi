@@ -3,24 +3,24 @@ error_reporting(0);
 include_once "../../config.php";
 
 $tabel = "jabatan";
-$Nama_Jabatan = ucwords($_POST['nama_jabatan']);
+$NamaJabatan = ucwords($_POST['NamaJabatan']);
 
 
 if(isset($_GET['add'])){
 	$nilai = array(
-		'Nama_Jabatan' => $Nama_Jabatan
+		'Nama_Jabatan' => $NamaJabatan
 	);
 	$dbase->add($tabel, $nilai);
 }else if(isset($_GET['update'])){
-	$id = $_POST['id_jabatan'];
-	$where = "ID_Jabatan = '$id'";
+	$idj = $_POST['idj'];
+	$where = "ID_Jabatan = '$idj'";
 	$nilai = array(
-		'Nama_Jabatan' => $Nama_Jabatan
+		'Nama_Jabatan' => $NamaJabatan
 	);
 	$dbase->update($tabel, $nilai, $where);
 }else if(isset($_GET['delete'])){
-	$id = $_POST['id_jabatan'];
-	$where = "ID_Jabatan = '$id'";
+	$idj = $_POST['idj'];
+	$where = "ID_Jabatan = '$idj'";
 	$dbase->delete($tabel, $where);
 }
 ?>
