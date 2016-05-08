@@ -58,7 +58,7 @@ if(empty($_SESSION['nip']) AND empty($_SESSION['password'])){
           <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
 
             <div class="menu_section">
-              <h3>General</h3>
+              <h3>General</h3><?php echo $_SESSION['jabatan']; ?>
               <ul class="nav side-menu">
                 <li><a><i class="?mod=dashboard"></i> Dashboard</a></li>
                 <li><a><i class="fa fa-table"></i> Master <span class="fa fa-chevron-down"></span></a>
