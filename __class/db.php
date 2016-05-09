@@ -41,15 +41,32 @@ class db extends PDO{
 		}
 	}
 
-	public function getLevel($pangkat){
-		$tabel = "tbl_pangkat";
-		$fild = "level";
-		$where = "id_pangkat='$pangkat'";
+	public function getJabatan($jabatan){
+		$tabel = "jabatan";
+		$fild = "Nama_Jabatan";
+		$where = "ID_Jabatan='$jabatan'";
 		foreach($this->select($tabel, $fild, $where) as $data){}
 
-		return $data['level'];
+		return $data['Nama_Jabatan'];
 	}
 
+	public function getGolongan($golongan){
+		$tabel = "golongan";
+		$fild = "Nama_Golongan";
+		$where = "ID_Golongan='$golongan'";
+		foreach($this->select($tabel, $fild, $where) as $data){}
+
+		return $data['Nama_Golongan'];
+	}
+
+	public function getInstansi($instansi){
+		$tabel = "instansi";
+		$fild = "Nama_Instansi";
+		$where = "ID_Instansi='$instansi'";
+		foreach($this->select($tabel, $fild, $where) as $data){}
+
+		return $data['Nama_Instansi'];
+	}
 
 	/* Function Tampil */
 	public function select($table=null, $rows=null, $where=null, $lj=null, $order=null, $limit=null, $groupby=null){
